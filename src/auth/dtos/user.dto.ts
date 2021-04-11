@@ -6,7 +6,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Role } from 'src/user-entities/util/role.enum';
+import { Role } from 'src/model/util/role.enum';
 
 // Dto for registering
 export class UserSubscribeDto {

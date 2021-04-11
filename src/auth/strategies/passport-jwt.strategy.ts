@@ -3,7 +3,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { RepositoryFactory } from '../service/repo.factory';
 import * as dotenv from 'dotenv';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../../user-entities/generic-entities/user.entity';
+import { UserEntity } from '../../model/generic-entities/user.entity';
 import { Injectable } from '@nestjs/common';
 
 // For getting the Token Secret Key

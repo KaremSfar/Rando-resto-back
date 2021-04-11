@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserEntity } from 'src/user-entities/generic-entities/user.entity';
+import { UserEntity } from 'src/model/generic-entities/user.entity';
 import { UserLoginDto, UserSubscribeDto } from '../dtos/user.dto';
 import { RepositoryFactory } from './repo.factory';
 

@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
 import { AuthModule } from './auth/auth.module';
+import { IngredientsModule } from './ingredients-gateway/ingredients.module';
+import { ComponentsGatewayModule } from './components-gateway/components-gateway.module';
 
 //Config environment variables
 dotenv.config();
@@ -20,7 +22,12 @@ const typeOrmOpts: TypeOrmModuleOptions = {
 };
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmOpts), AuthModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmOpts),
+    AuthModule,
+    IngredientsModule,
+    ComponentsGatewayModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

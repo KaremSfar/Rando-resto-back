@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/user-entities/generic-entities/user.entity';
-import { CustomerRepo } from 'src/user-entities/repositories/customer.repo';
-import { RestoOwnerRepo } from 'src/user-entities/repositories/resto-owner.repo';
-import { Role } from 'src/user-entities/util/role.enum';
+import { UserEntity } from 'src/model/generic-entities/user.entity';
+import { CustomerRepo } from 'src/model/repositories/customer.repo';
+import { RestoOwnerRepo } from 'src/model/repositories/resto-owner.repo';
+import { Role } from 'src/model/util/role.enum';
 import { Repository } from 'typeorm';
 
 // Repository Factory for authenticating
