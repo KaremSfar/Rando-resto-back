@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 import { AuthModule } from './auth/auth.module';
 import { IngredientsModule } from './ingredients-gateway/ingredients.module';
 import { ComponentsGatewayModule } from './components-gateway/components-gateway.module';
+import { DishesGatewayModule } from './dishes-gateway/dishes-gateway.module';
 
 //Config environment variables
 dotenv.config();
@@ -27,6 +28,7 @@ const typeOrmOpts: TypeOrmModuleOptions = {
     AuthModule,
     IngredientsModule,
     ComponentsGatewayModule,
+    DishesGatewayModule,
   ],
   controllers: [AppController],
   providers: [AppService],
