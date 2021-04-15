@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Component } from 'src/model/entities/component.entity';
-import { DishEntity } from 'src/model/entities/dish.entity';
 import { RestoOwnerEntity } from 'src/model/entities/resto-owner.entity';
 import { DishRepo } from 'src/model/repositories/dish.repo';
 import { CreateDishDto } from '../dto/dishes.dto';
@@ -32,5 +31,16 @@ export class DishesService {
     return this.dishRepo.find({
       relations: ['components'],
     });
+  }
+
+  getRandomDish() {
+    const dish = this.dishRepo
+      .createQueryBuilder('dish')
+      .select('*')
+      .orderBy('RAND()')
+      .limit(1)
+      .execute();
+
+    return dish;
   }
 }

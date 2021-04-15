@@ -7,18 +7,18 @@ import { Role } from 'src/model/util/role.enum';
 import { CreateDishDto } from '../dto/dishes.dto';
 import { DishesService } from './dishes.service';
 
-@Controller('dishes')
-export class DishesController {
+@UseGuards(RolesGuard)
+@Roles(Role.RestoOwner)
+@Controller('dishes/resto')
+export class DishesRestoController {
   constructor(private dishesService: DishesService) {}
 
   @Get()
-  getDishes(){
+  getDishes() {
     return this.dishesService.getDishes();
   }
 
   @Post()
-  @UseGuards(RolesGuard)
-  @Roles(Role.RestoOwner)
   createDish(
     @Body() createDishDto: CreateDishDto,
     @User() restoOwner: RestoOwnerEntity,
