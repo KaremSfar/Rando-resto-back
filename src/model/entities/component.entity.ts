@@ -10,7 +10,9 @@ export class Component extends BaseEntity {
   })
   ingredient: IngredientEntity;
 
-  @Column({
+  @Column('decimal', {
+    precision: 5,
+    scale: 2,
     nullable: false,
   })
   quantity: number;

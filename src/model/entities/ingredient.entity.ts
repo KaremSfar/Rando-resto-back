@@ -9,7 +9,7 @@ export class IngredientEntity extends BaseEntity {
   })
   ingredientName: string;
 
-  @Column()
+  @Column('decimal', { precision: 5, scale: 2 })
   calories: number;
 
   @OneToMany(() => Component, (component) => component.ingredient)
