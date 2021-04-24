@@ -6,15 +6,12 @@ import { ComponentsRepository } from '../repositories/components.repository';
 
 @Injectable()
 export class ComponentsInteractor {
-  constructor(
-    @Inject('ComponentsRepository')
-    private componentRepository: ComponentsRepository,
-  ) {}
+  constructor(private componentRepository: ComponentsRepository) {}
 
-  async createComponent(
+  createComponent(
     createComponent: CreateComponentInputData,
   ): Promise<Component> {
     const component = CreateComponentDataMapper.toClass(createComponent);
-    return await this.componentRepository.createComponent(component);
+    return this.componentRepository.createComponent(component);
   }
 }

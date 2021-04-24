@@ -4,7 +4,6 @@ import { ComponentsRepository } from 'src/application/repositories/components.re
 import { ComponentsInteractor } from 'src/application/use-cases/components-interactor';
 import { Component } from 'src/infrastructure/database/mapper/component.entity';
 import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
-import { Repository } from 'typeorm';
 import { ComponentsController } from './components/components.controller';
 
 @Module({
@@ -12,7 +11,7 @@ import { ComponentsController } from './components/components.controller';
   controllers: [ComponentsController],
   providers: [
     ComponentRepo,
-    { provide: 'ComponentsRepository', useClass: ComponentRepo },
+    { provide: ComponentsRepository, useClass: ComponentRepo },
     ComponentsInteractor,
   ],
 })

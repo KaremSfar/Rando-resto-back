@@ -1,5 +1,5 @@
 import { Component } from 'src/domain/models/component';
 
-export interface ComponentsRepository {
-  createComponent(component: Component): Promise<Component>;
+export abstract class ComponentsRepository {
+  abstract createComponent(component: Component): Promise<Component>;
 }
