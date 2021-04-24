@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Ingredient } from 'src/domain/models/ingredient';
-import { IIngredientRepository } from '../repositories/IIngredientRepository';
+import { IngredientRepository } from '../repositories/ingredient.repository';
 
 @Injectable()
 export class IngredientsInteractor {
-  constructor(private ingredientsRepository: IIngredientRepository) {}
+  constructor(private ingredientsRepository: IngredientRepository) {}
 
   getIgredients(): Ingredient[] {
     return this.ingredientsRepository.find();
