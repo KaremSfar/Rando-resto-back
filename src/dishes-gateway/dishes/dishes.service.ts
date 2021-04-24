@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Component } from 'src/model/entities/component.entity';
+import { Component } from 'src/infrastructure/database/mapper/component.entity';
+import { DishRepo } from 'src/infrastructure/database/repositories/dish.repo';
 import { RestoOwnerEntity } from 'src/model/entities/resto-owner.entity';
-import { DishRepo } from 'src/model/repositories/dish.repo';
 import { CreateDishDto } from '../dto/dishes.dto';
 
 @Injectable()

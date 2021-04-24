@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { Component } from 'src/model/entities/component.entity';
+import { Component } from 'src/infrastructure/database/mapper/component.entity';
 import { CreateComponentDto } from '../dto/component-dto';
 import { ComponentsService } from './components.service';
 

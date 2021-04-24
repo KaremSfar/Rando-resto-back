@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IngredientEntity } from 'src/infrastructure/database/mapper/ingredient.entity';
+import { IngredientsRepository } from 'src/infrastructure/database/repositories/ingredient.repository';
 import { IngredientCreateDto } from '../dtos/ingredient.dto';
-import { IngredientEntity } from '../../model/entities/ingredient.entity';
-import { IngredientsRepository } from '../../model/repositories/ingredient.repository';
 
 @Injectable()
 export class IngredientService {

@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
-import { BaseEntity } from '../generic-entities/base.entity';
+import { BaseEntity } from './base.entity';
 import { Component } from './component.entity';
 import { RestoOwnerEntity } from './resto-owner.entity';
 

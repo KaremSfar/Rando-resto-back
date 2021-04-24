@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Component } from 'src/model/entities/component.entity';
-import { ComponentRepo } from 'src/model/repositories/component.repo';
-import { IngredientsRepository } from 'src/model/repositories/ingredient.repository';
+import { Component } from 'src/infrastructure/database/mapper/component.entity';
+import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
+import { IngredientsRepository } from 'src/infrastructure/database/repositories/ingredient.repository';
 import { CreateComponentDto } from '../dto/component-dto';
 
 @Injectable()

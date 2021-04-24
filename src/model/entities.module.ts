@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ComponentRepo } from './repositories/component.repo';
+import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
+import { DishRepo } from 'src/infrastructure/database/repositories/dish.repo';
+import { IngredientsRepository } from 'src/infrastructure/database/repositories/ingredient.repository';
 import { CustomerRepo } from './repositories/customer.repo';
-import { DishRepo } from './repositories/dish.repo';
-import { IngredientsRepository } from './repositories/ingredient.repository';
 import { RestoOwnerRepo } from './repositories/resto-owner.repo';
 
 @Module({

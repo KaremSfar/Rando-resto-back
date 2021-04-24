@@ -1,9 +1,10 @@
-import { BaseEntity } from 'src/model/generic-entities/base.entity';
+import { Ingredient } from 'src/domain/models/ingredient';
+import { BaseEntity } from './base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { Component } from './component.entity';
 
 @Entity('ingredient')
-export class IngredientEntity extends BaseEntity {
+export class IngredientEntity extends BaseEntity implements Ingredient {
   @Column({
     unique: true,
   })
