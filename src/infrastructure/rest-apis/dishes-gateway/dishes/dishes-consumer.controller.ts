@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { DishesService } from './dishes.service';
+import { DishesInteractor } from 'src/application/use-cases/dishes-interactor';
 
 @Controller('dishes/consumer')
 export class DishesConsumerController {
-  constructor(private dishesService: DishesService) {}
+  constructor(private dishesInteractor: DishesInteractor) {}
 
   @Get()
   getRandomDish() {
-    return this.dishesService.getRandomDish();
+    return this.dishesInteractor.getRandomDish();
   }
 }
