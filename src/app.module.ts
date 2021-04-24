@@ -3,8 +3,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { AuthModule } from './auth/auth.module';
 import { IngredientsModule } from './ingredients-gateway/ingredients.module';
-import { ComponentsGatewayModule } from './components-gateway/components-gateway.module';
-import { DishesGatewayModule } from './dishes-gateway/dishes-gateway.module';
+import { ComponentsGatewayModule } from './infrastructure/rest-apis/components-gateway/components-gateway.module';
+import { DishesGatewayModule } from './infrastructure/rest-apis/dishes-gateway/dishes-gateway.module';
 
 //Config environment variables
 dotenv.config();

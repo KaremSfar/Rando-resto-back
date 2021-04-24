@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
+import { CustomerRepo } from 'src/infrastructure/database/repositories/customer.repo';
 import { DishRepo } from 'src/infrastructure/database/repositories/dish.repo';
 import { IngredientsRepository } from 'src/infrastructure/database/repositories/ingredient.repository';
-import { CustomerRepo } from './repositories/customer.repo';
-import { RestoOwnerRepo } from './repositories/resto-owner.repo';
+import { RestoOwnerRepo } from 'src/infrastructure/database/repositories/resto-owner.repo';
+import { Component } from './mapper/component.entity';
 
 @Module({
   imports: [
@@ -12,11 +13,11 @@ import { RestoOwnerRepo } from './repositories/resto-owner.repo';
       RestoOwnerRepo,
       CustomerRepo,
       IngredientsRepository,
-      ComponentRepo,
+      Component,
       DishRepo,
     ]),
   ],
-  providers: [],
-  exports: [TypeOrmModule],
+  providers: [ComponentRepo],
+  exports: [TypeOrmModule, ComponentRepo],
 })
 export class EntitiesModule {}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Component } from 'src/infrastructure/database/mapper/component.entity';
 import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
@@ -8,7 +8,7 @@ import { CreateComponentDto } from '../dto/component-dto';
 @Injectable()
 export class ComponentsService {
   constructor(
-    @InjectRepository(ComponentRepo) private componentRepo: ComponentRepo,
+    private componentRepo: ComponentRepo,
     @InjectRepository(IngredientsRepository)
     private ingredientsRepository: IngredientsRepository,
   ) {}
@@ -16,17 +16,10 @@ export class ComponentsService {
   async createComponent(
     createComponentDto: CreateComponentDto,
   ): Promise<Component> {
-    const component = this.componentRepo.create({
-      quantity: createComponentDto.quantity,
-      ingredient: <any>{ id: createComponentDto.ingredientId },
-    });
-
-    return this.componentRepo.save(component);
+    throw new NotImplementedException();
   }
 
   getComponents(): Promise<Component[]> {
-    return this.componentRepo.find({
-      relations: ['ingredient'],
-    });
+    throw new NotImplementedException();
   }
 }

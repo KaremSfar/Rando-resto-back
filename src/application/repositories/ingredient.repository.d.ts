@@ -1,7 +1,7 @@
 import { Ingredient } from 'src/domain/models/ingredient';
 
 export interface IngredientRepository {
-  find(): Ingredient[];
+  find(): Promise<Ingredient[]>;
 
-  createIngredient(Ingredient): Ingredient;
+  createIngredient(Ingredient): Promise<Ingredient>;
 }

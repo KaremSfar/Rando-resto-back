@@ -4,13 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserEntity } from 'src/model/generic-entities/user.entity';
 import { UserLoginDto, UserSubscribeDto } from '../dtos/user.dto';
 import { RepositoryFactory } from './repo.factory';
 
 //To encrypt the users' passwords
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { UserEntity } from 'src/infrastructure/database/mapper/user.entity';
 
 @Injectable()
 export class AuthService {

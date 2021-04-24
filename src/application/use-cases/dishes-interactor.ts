@@ -6,15 +6,15 @@ import { DishRepository } from '../repositories/dish.repository';
 export class DishesInteractor {
   constructor(private dishRepository: DishRepository) {}
 
-  createDish(dish: Dish): Dish {
-    return this.dishRepository.createDish(dish);
+  async createDish(dish: Dish): Promise<Dish> {
+    return await this.dishRepository.createDish(dish);
   }
 
-  getDishes(): Dish[] {
-    return this.dishRepository.find();
+  async getDishes(): Promise<Dish[]> {
+    return await this.dishRepository.find();
   }
 
-  getRandomDish(): Dish {
-    return this.dishRepository.findRandomDish();
+  async getRandomDish(): Promise<Dish> {
+    return await this.dishRepository.findRandomDish();
   }
 }

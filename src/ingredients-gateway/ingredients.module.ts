@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { IngredientController } from './controllers/ingredient.controller';
 import { IngredientService } from './services/ingredient.service';
-import { EntitiesModule } from 'src/model/entities.module';
+import { EntitiesModule } from 'src/infrastructure/database/entities.module';
 
 @Module({
   imports: [EntitiesModule],

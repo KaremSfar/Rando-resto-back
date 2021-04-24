@@ -1,10 +1,10 @@
 import { Dish } from 'src/domain/models/dish';
 
 export interface DishRepository {
-  createDish(dish: Dish): Dish;
+  createDish(dish: Dish): Promise<Dish>;
 
   // Returns the Components with it
-  find(): Dish[];
+  find(): Promise<Dish[]>;
 
-  findRandomDish(): Dish;
+  findRandomDish(): Promise<Dish>;
 }

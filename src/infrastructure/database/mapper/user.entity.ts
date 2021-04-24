@@ -1,5 +1,5 @@
+import { Role } from 'src/domain/models/role.enum';
 import { Column } from 'typeorm';
-import { Role } from './role.enum';
 import { BaseEntity } from './base.entity';
 
 export abstract class UserEntity extends BaseEntity {

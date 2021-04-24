@@ -6,11 +6,11 @@ import { IngredientRepository } from '../repositories/ingredient.repository';
 export class IngredientsInteractor {
   constructor(private ingredientsRepository: IngredientRepository) {}
 
-  getIgredients(): Ingredient[] {
+  getIgredients(): Promise<Ingredient[]> {
     return this.ingredientsRepository.find();
   }
 
-  createIngredient(ingredient: Ingredient): Ingredient {
+  createIngredient(ingredient: Ingredient): Promise<Ingredient> {
     return this.ingredientsRepository.createIngredient(ingredient);
   }
 }

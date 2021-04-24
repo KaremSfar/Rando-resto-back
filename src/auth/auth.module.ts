@@ -4,7 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './service/auth.service';
 import { RepositoryFactory } from './service/repo.factory';
 import { AuthController } from './controllers/auth.controller';
-import { EntitiesModule } from '../model/entities.module';
+import { EntitiesModule } from '../infrastructure/database/entities.module';
 import { PassportJwtStrategy } from './strategies/passport-jwt.strategy';
 
 @Module({

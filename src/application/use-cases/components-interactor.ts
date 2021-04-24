@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { Component } from 'src/domain/models/component';
+import { CreateComponentDataMapper } from '../data-model-mappers/component-mappers';
+import { CreateComponentInputData } from '../input-data/component-dto';
 import { ComponentsRepository } from '../repositories/components.repository';
 
 @Injectable()
 export class ComponentsInteractor {
   constructor(private componentRepository: ComponentsRepository) {}
 
-  createComponent(component: Component): Component {
-    return this.componentRepository.createComponent(component);
+  async createComponent(
+    createComponent: CreateComponentInputData,
+  ): Promise<Component> {
+    const component = CreateComponentDataMapper.toClass(createComponent);
+    return await this.componentRepository.createComponent(component);
   }
 }

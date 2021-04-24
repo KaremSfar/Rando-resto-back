@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/model/generic-entities/base.entity';
+import { BaseEntity } from '../shared/base.entity';
 
 export interface Ingredient extends BaseEntity {
   ingredientName: string;
