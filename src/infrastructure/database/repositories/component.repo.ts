@@ -9,10 +9,10 @@ import { Component as ComponentEntity } from '../mapper/component.entity';
 export class ComponentRepo implements ComponentsRepository {
   constructor(
     @InjectRepository(ComponentEntity)
-    private componentRepo: Repository<ComponentEntity>,
+    private typeormRepo: Repository<ComponentEntity>,
   ) {}
 
   async createComponent(component: Component): Promise<Component> {
-    return await this.componentRepo.save(component);
+    return await this.typeormRepo.save(component);
   }
 }

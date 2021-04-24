@@ -1,18 +1,19 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ComponentsRepository } from 'src/application/repositories/components.repository';
 import { ComponentsInteractor } from 'src/application/use-cases/components-interactor';
-import { EntitiesModule } from 'src/infrastructure/database/entities.module';
+import { Component } from 'src/infrastructure/database/mapper/component.entity';
 import { ComponentRepo } from 'src/infrastructure/database/repositories/component.repo';
+import { Repository } from 'typeorm';
 import { ComponentsController } from './components/components.controller';
-import { ComponentsService } from './components/components.service';
 
 @Module({
-  imports: [EntitiesModule],
+  imports: [TypeOrmModule.forFeature([Component])],
   controllers: [ComponentsController],
   providers: [
-    ComponentsService,
-    //ComponentsInteractor,
-    //{ provide: ComponentsRepository, useClass: ComponentRepo },
+    ComponentRepo,
+    { provide: 'ComponentsRepository', useClass: ComponentRepo },
+    ComponentsInteractor,
   ],
 })
 export class ComponentsGatewayModule {}
