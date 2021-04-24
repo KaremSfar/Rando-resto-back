@@ -1,6 +1,6 @@
-import { UserEntity } from '../shared/user.entity';
-import { DishEntity } from './dish';
+import { User } from '../shared/user.entity';
+import { Dish } from './dish';
 
-export class RestoOwnerEntity extends UserEntity {
-  dishes: DishEntity[];
+export class RestoOwner extends User {
+  dishes: Dish[];
 }

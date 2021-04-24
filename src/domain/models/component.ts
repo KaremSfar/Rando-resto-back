@@ -1,11 +1,8 @@
 import { BaseEntity } from '../shared/base.entity';
-import { DishEntity } from './dish';
-import { IngredientEntity } from './ingredient';
+import { Ingredient } from './ingredient';
 
 export class Component extends BaseEntity {
-  ingredient: IngredientEntity;
+  ingredient: Ingredient;
 
   quantity: number;
-
-  dish: DishEntity;
 }

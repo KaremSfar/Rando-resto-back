@@ -1,3 +1,3 @@
-import { UserEntity } from '../shared/user.entity';
+import { User } from '../shared/user.entity';
 
-export class CustomerEntity extends UserEntity {}
+export class Customer extends User {}

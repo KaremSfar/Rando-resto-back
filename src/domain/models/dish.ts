@@ -1,9 +1,9 @@
 import { BaseEntity } from '../shared/base.entity';
 import { Component } from './component';
-import { RestoOwnerEntity } from './resto-owner';
+import { RestoOwner } from './resto-owner';
 
-export class DishEntity extends BaseEntity {
-  resto: RestoOwnerEntity;
+export class Dish extends BaseEntity {
+  resto: RestoOwner;
 
   dishName: string;
 
