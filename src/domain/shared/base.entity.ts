@@ -1,3 +1,3 @@
-export interface BaseEntity {
+export abstract class BaseEntity {
   id: string;
 }

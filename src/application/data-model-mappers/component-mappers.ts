@@ -1,5 +1,5 @@
 import { Component } from 'src/domain/models/component';
-import { CreateComponentInputData } from '../input-data/component-dto';
+import { CreateComponentInputData } from '../input-data/component-data';
 
 export class CreateComponentDataMapper {
   static toClass(createComponent: CreateComponentInputData): Component {

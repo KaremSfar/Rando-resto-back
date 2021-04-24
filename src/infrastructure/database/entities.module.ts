@@ -6,14 +6,7 @@ import { IngredientsRepository } from 'src/infrastructure/database/repositories/
 import { RestoOwnerRepo } from 'src/infrastructure/database/repositories/resto-owner.repo';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      RestoOwnerRepo,
-      CustomerRepo,
-      IngredientsRepository,
-      DishRepo,
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([RestoOwnerRepo, CustomerRepo, DishRepo])],
   providers: [],
   exports: [TypeOrmModule],
 })
