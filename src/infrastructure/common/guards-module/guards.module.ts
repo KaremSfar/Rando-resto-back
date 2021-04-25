@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/infrastructure/rest-apis/auth/auth.module';
 
 @Module({
   imports: [],

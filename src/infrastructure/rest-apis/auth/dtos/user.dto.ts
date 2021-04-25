@@ -6,11 +6,14 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import {
+  UserCreateInputData,
+  UserLoginInputData,
+} from 'src/application/input-data/user.data';
 import { Role } from 'src/domain/models/role.enum';
 
-
 // Dto for registering
-export class UserSubscribeDto {
+export class UserSubscribeDto implements UserCreateInputData {
   @IsNotEmpty()
   username: string;
 
@@ -33,7 +36,7 @@ export class UserSubscribeDto {
 }
 
 // Logging in DTO
-export class UserLoginDto {
+export class UserLoginDto implements UserLoginInputData {
   @IsEmail()
   @IsNotEmpty()
   email: string;

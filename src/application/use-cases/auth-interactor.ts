@@ -3,31 +3,34 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UserLoginDto, UserSubscribeDto } from '../dtos/user.dto';
-import { RepositoryFactory } from './repo.factory';
 
 //To encrypt the users' passwords
 import * as bcrypt from 'bcrypt';
-import { Repository } from 'typeorm';
 import { UserEntity } from 'src/infrastructure/database/mapper/user.entity';
+import { RepositoryFactory } from '../services/repo.factory';
+import { PayloadSigner } from '../services/payload-signer';
+import {
+  UserCreateInputData,
+  UserLoginInputData,
+} from '../input-data/user.data';
+import { UserRepository } from '../repositories/user.respository';
+import { CreateUserDataMapper } from '../data-model-mappers/user-mapper';
 
 @Injectable()
-export class AuthService {
+export class AuthInteractor {
   constructor(
     private repoFactory: RepositoryFactory,
-    private jwtService: JwtService,
+    private payloadSigner: PayloadSigner,
   ) {}
 
   //Registers a user
-  async register(registerDto: UserSubscribeDto): Promise<Partial<UserEntity>> {
-    const repository: Repository<UserEntity> = this.repoFactory.getRepository(
-      registerDto.role,
-    );
+  async register(
+    userCreate: UserCreateInputData,
+  ): Promise<Partial<UserEntity>> {
+    const user = CreateUserDataMapper.toClass(userCreate);
 
-    const user = repository.create({
-      ...registerDto,
-    });
+    const repository = this.repoFactory.getRepository(user.role);
+
     const salt = await bcrypt.genSalt();
 
     user.password = await bcrypt.hash(user.password, salt);
@@ -38,19 +41,17 @@ export class AuthService {
       throw new ConflictException('username or email already existing');
     }
     delete user.password;
-    delete user.createdAt;
-    delete user.deletedAt;
     return user;
   }
 
   //For a regsitered user return his access token
-  async login(credentials: UserLoginDto) {
-    const repository: Repository<UserEntity> = this.repoFactory.getRepository(
+  async login(credentials: UserLoginInputData) {
+    const repository: UserRepository = this.repoFactory.getRepository(
       credentials.role,
     );
 
     const { email, password } = credentials;
-    const user = await repository.findOne({ email });
+    const user = await repository.findOneByEmail(email);
 
     if (!user) throw new NotFoundException('email or password incorrect');
 
@@ -61,7 +62,7 @@ export class AuthService {
         email: user.email,
         role: credentials.role,
       };
-      const jwt = this.jwtService.sign(payload);
+      const jwt = this.payloadSigner.sign(payload);
       return { 'access-token': jwt };
     }
     throw new NotFoundException('email or password incorrect');

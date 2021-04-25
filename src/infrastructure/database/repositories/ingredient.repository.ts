@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IngredientRepository } from 'src/application/repositories/ingredient.repository';
 import { Ingredient } from 'src/domain/models/ingredient';
-import { EntityRepository, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { IngredientEntity } from '../mapper/ingredient.entity';
 @Injectable()
 export class IngredientsRepository implements IngredientRepository {

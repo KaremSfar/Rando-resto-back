@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { IngredientCreateDto } from '../dtos/ingredient.dto';
 
-import { RolesGuard } from 'src/guards-module/guards/roles.guard';
-import { Roles } from 'src/guards-module/decorators/roles.decorator';
+import { RolesGuard } from 'src/infrastructure/common/guards-module/guards/roles.guard';
+import { Roles } from 'src/infrastructure/common/guards-module/decorators/roles.decorator';
 import { Role } from 'src/domain/models/role.enum';
 import { IngredientsInteractor } from 'src/application/use-cases/ingredients-interactor';
 import { Ingredient } from 'src/domain/models/ingredient';

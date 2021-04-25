@@ -1,10 +1,9 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { RepositoryFactory } from '../service/repo.factory';
 import * as dotenv from 'dotenv';
-import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { UserEntity } from 'src/infrastructure/database/mapper/user.entity';
+import { RepositoryFactory } from 'src/application/services/repo.factory';
+import { UserRepository } from 'src/application/repositories/user.respository';
 
 // For getting the Token Secret Key
 dotenv.config();
@@ -22,13 +21,11 @@ export class PassportJwtStrategy extends PassportStrategy(Strategy) {
 
   // Called after extracting the bearer token to try and inject the payload to request
   async validate(payload) {
-    const repository: Repository<UserEntity> = this.repoFactory.getRepository(
+    const repository: UserRepository = this.repoFactory.getRepository(
       payload.role,
     );
 
-    const user = await repository.findOne({
-      id: payload.id,
-    });
+    const user = await repository.findOneById(payload.id);
 
     if (user) {
       delete user.password;

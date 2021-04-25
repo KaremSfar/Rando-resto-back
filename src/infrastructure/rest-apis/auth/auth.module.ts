@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { AuthService } from './service/auth.service';
-import { RepositoryFactory } from './service/repo.factory';
 import { AuthController } from './controllers/auth.controller';
-import { EntitiesModule } from '../infrastructure/database/entities.module';
 import { PassportJwtStrategy } from './strategies/passport-jwt.strategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CustomerRepo } from 'src/infrastructure/database/repositories/customer.repo';
+import { RestoOwnerRepo } from 'src/infrastructure/database/repositories/resto-owner.repo';
+import { JwtSerivceC } from './service/jwt.service';
+import { PayloadSigner } from 'src/application/services/payload-signer';
+import { RepositoryFactory } from 'src/application/services/repo.factory';
+import { AuthInteractor } from 'src/application/use-cases/auth-interactor';
+import { CustomerEntity } from 'src/infrastructure/database/mapper/customer.entity';
+import { RestoOwnerEntity } from 'src/infrastructure/database/mapper/resto-owner.entity';
 
 @Module({
   imports: [
@@ -16,7 +22,7 @@ import { PassportJwtStrategy } from './strategies/passport-jwt.strategy';
     //TypeOrmModule.forFeature([OwnerRepository, VetRepository]),
 
     //Using Repos and Entities
-    EntitiesModule,
+    TypeOrmModule.forFeature([CustomerEntity, RestoOwnerEntity]),
     //Passport JWT Strategy
     PassportModule.register({ defaultStrategy: 'jwt' }),
     //Signing and verifying Module
@@ -29,10 +35,13 @@ import { PassportJwtStrategy } from './strategies/passport-jwt.strategy';
   ],
   // Providers are the Services used from within the Module For the Module
   providers: [
-    AuthService,
-    RepositoryFactory,
     // Injected into the Authentication Service to Sign the payload
     PassportJwtStrategy,
+    { provide: 'CustomerRepository', useClass: CustomerRepo },
+    { provide: 'RestoOwnerRepository', useClass: RestoOwnerRepo },
+    { provide: PayloadSigner, useClass: JwtSerivceC },
+    RepositoryFactory,
+    AuthInteractor,
   ],
   controllers: [AuthController],
   exports: [],

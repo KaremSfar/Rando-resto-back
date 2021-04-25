@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { DishesInteractor } from 'src/application/use-cases/dishes-interactor';
 import { Role } from 'src/domain/models/role.enum';
-import { User } from 'src/guards-module/decorators/get.user.decorator';
-import { Roles } from 'src/guards-module/decorators/roles.decorator';
-import { RolesGuard } from 'src/guards-module/guards/roles.guard';
+import { User } from 'src/infrastructure/common/guards-module/decorators/get.user.decorator';
+import { Roles } from 'src/infrastructure/common/guards-module/decorators/roles.decorator';
+import { RolesGuard } from 'src/infrastructure/common/guards-module/guards/roles.guard';
 import { RestoOwnerEntity } from 'src/infrastructure/database/mapper/resto-owner.entity';
 import { CreateDishDto } from '../dto/dishes.dto';
 
