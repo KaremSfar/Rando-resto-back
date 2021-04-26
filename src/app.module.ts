@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
-import { AuthModule } from './auth/auth.module';
-import { IngredientsModule } from './ingredients-gateway/ingredients.module';
-import { ComponentsGatewayModule } from './components-gateway/components-gateway.module';
-import { DishesGatewayModule } from './dishes-gateway/dishes-gateway.module';
+import { AuthModule } from './infrastructure/rest-apis/auth/auth.module';
+import { IngredientsModule } from './infrastructure/rest-apis/ingredients-gateway/ingredients.module';
+import { ComponentsGatewayModule } from './infrastructure/rest-apis/components-gateway/components-gateway.module';
+import { DishesGatewayModule } from './infrastructure/rest-apis/dishes-gateway/dishes-gateway.module';
 
 //Config environment variables
 dotenv.config();
@@ -30,7 +28,7 @@ const typeOrmOpts: TypeOrmModuleOptions = {
     ComponentsGatewayModule,
     DishesGatewayModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
