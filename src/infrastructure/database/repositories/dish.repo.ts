@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DishRepository } from 'src/application/repositories/dish.repository';
+import { DishQueryFilter } from 'src/application/services/dish-query-filter';
 import { Dish } from 'src/domain/models/dish';
-import { Repository } from 'typeorm';
+import { Ingredient } from 'src/domain/models/ingredient';
+import { Repository, SubjectRemovedAndUpdatedError } from 'typeorm';
 import { DishEntity } from '../mapper/dish.entity';
 
 @Injectable()
@@ -18,14 +20,22 @@ export class DishRepo implements DishRepository {
   createDish(dish: Dish): Promise<Dish> {
     return this.typeormDishRepo.save(dish);
   }
-  findRandomDish(): Promise<Dish> {
-    const dish = this.typeormDishRepo
-      .createQueryBuilder('dish')
-      .select('*')
-      .orderBy('RAND()')
-      .limit(1)
-      .execute();
+  async findRandomDish(filter: DishQueryFilter): Promise<Dish> {
+    let dishes = await this.typeormDishRepo.find({
+      relations: ['components', 'components.ingredient'],
+    });
 
-    return dish;
+    if (filter?.calories != null)
+      dishes = dishes.filter((d) => d.getCalories() <= filter.calories);
+
+    if (filter?.ingredientIDs != null) {
+      for (const ingredientId of filter.ingredientIDs) {
+        dishes = dishes.filter(
+          (d) => !d.components.some((c) => c.ingredient.id === ingredientId),
+        );
+      }
+    }
+
+    return dishes[0];
   }
 }

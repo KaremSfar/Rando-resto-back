@@ -14,4 +14,13 @@ export class DishEntity extends BaseEntity implements Dish {
 
   @OneToMany(() => Component, (component) => component.dish)
   components: Component[];
+
+  getCalories(): number {
+    let calories = 0;
+    for (const component of this.components) {
+      calories += component.ingredient.calories * component.quantity;
+    }
+
+    return calories;
+  }
 }

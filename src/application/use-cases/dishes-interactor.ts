@@ -3,6 +3,7 @@ import { Dish } from 'src/domain/models/dish';
 import { CreateDishDataMapper } from '../data-model-mappers/dish-mappers';
 import { CreateDishInputData } from '../input-data/dishes-data';
 import { DishRepository } from '../repositories/dish.repository';
+import { DishQueryFilter } from '../services/dish-query-filter';
 
 @Injectable()
 export class DishesInteractor {
@@ -18,7 +19,7 @@ export class DishesInteractor {
     return this.dishRepository.find();
   }
 
-  getRandomDish(): Promise<Dish> {
-    return this.dishRepository.findRandomDish();
+  getRandomDish(filter: DishQueryFilter): Promise<Dish> {
+    return this.dishRepository.findRandomDish(filter);
   }
 }
