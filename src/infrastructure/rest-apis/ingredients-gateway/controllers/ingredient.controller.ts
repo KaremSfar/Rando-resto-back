@@ -6,7 +6,9 @@ import { Roles } from 'src/infrastructure/common/guards-module/decorators/roles.
 import { Role } from 'src/domain/models/role.enum';
 import { IngredientsInteractor } from 'src/application/use-cases/ingredients-interactor';
 import { Ingredient } from 'src/domain/models/ingredient';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Ingredients')
 @Controller('/ingredients')
 export class IngredientController {
   constructor(private ingredientInteractor : IngredientsInteractor) {}

@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DishesInteractor } from 'src/application/use-cases/dishes-interactor';
 import { Role } from 'src/domain/models/role.enum';
 import { User } from 'src/infrastructure/common/guards-module/decorators/get.user.decorator';
@@ -7,6 +8,7 @@ import { RolesGuard } from 'src/infrastructure/common/guards-module/guards/roles
 import { RestoOwnerEntity } from 'src/infrastructure/database/mapper/resto-owner.entity';
 import { CreateDishDto } from '../dto/dishes.dto';
 
+@ApiTags('Resto Dishes')
 @UseGuards(RolesGuard)
 @Roles(Role.RestoOwner)
 @Controller('dishes/resto')
