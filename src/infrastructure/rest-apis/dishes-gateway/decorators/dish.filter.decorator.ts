@@ -6,7 +6,7 @@ export const DishFilter = createParamDecorator(
     const dishQueryFilter = new DishQueryFilter();
     const request = ctx.switchToHttp().getRequest();
     dishQueryFilter.calories = request.query.calories;
-    dishQueryFilter.ingredientIDs = request.query.ingredients.split(',');
+    dishQueryFilter.ingredientIDs = request.query.ingredients?.split(',');
     return dishQueryFilter;
   },
 );
