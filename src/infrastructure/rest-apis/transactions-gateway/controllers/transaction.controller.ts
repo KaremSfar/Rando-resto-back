@@ -19,8 +19,9 @@ export class TransactionController {
   @Post()
   createTransaction(
     @Body() transactionCreateDto: CreateTransactionDto,
-    @User() Customer: Customer,
+    @User() customer: Customer,
   ): Promise<Transaction> {
+    transactionCreateDto.customerId = customer.id;
     return this.transactionInteractor.createTransaction(transactionCreateDto);
   }
 }
