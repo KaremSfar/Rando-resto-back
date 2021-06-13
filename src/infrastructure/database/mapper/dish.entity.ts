@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Component } from './component.entity';
 import { RestoOwnerEntity } from './resto-owner.entity';
+import { TransactionEntity } from './transaction.entity';
 
 @Entity('dish')
 export class DishEntity extends BaseEntity implements Dish {
@@ -14,6 +15,9 @@ export class DishEntity extends BaseEntity implements Dish {
 
   @OneToMany(() => Component, (component) => component.dish)
   components: Component[];
+
+  @OneToMany(() => TransactionEntity, (transaction) => transaction.dish)
+  transactions: TransactionEntity[];
 
   getCalories(): number {
     let calories = 0;

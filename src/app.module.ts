@@ -5,6 +5,7 @@ import { AuthModule } from './infrastructure/rest-apis/auth/auth.module';
 import { IngredientsModule } from './infrastructure/rest-apis/ingredients-gateway/ingredients.module';
 import { ComponentsGatewayModule } from './infrastructure/rest-apis/components-gateway/components-gateway.module';
 import { DishesGatewayModule } from './infrastructure/rest-apis/dishes-gateway/dishes-gateway.module';
+import { TransactionModule } from './infrastructure/rest-apis/transactions-gateway/transactions.module';
 
 //Config environment variables
 dotenv.config();
@@ -27,6 +28,7 @@ const typeOrmOpts: TypeOrmModuleOptions = {
     IngredientsModule,
     ComponentsGatewayModule,
     DishesGatewayModule,
+    TransactionModule,
   ],
   controllers: [],
   providers: [],
