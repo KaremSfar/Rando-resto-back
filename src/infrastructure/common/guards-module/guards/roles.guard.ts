@@ -35,7 +35,6 @@ export class RolesGuard extends AuthGuard('jwt') {
       return true;
     }
 
-    if (user) return user;
     // If Public no need for Authentication
 
     if (!user || !requiredRoles.some((role) => user.role === role)) {
